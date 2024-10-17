@@ -30,7 +30,7 @@ namespace genetic_algorithm
         /// </summary>
         /// <param name="entity">Другой скрещиваемый объект</param>
         /// <returns>Результат скрещивания</returns>
-        public abstract Entity Crossover(ref readonly Entity entity);
+        public abstract Entity Crossover(Entity entity);
         /// <summary>
         /// Ищет выживаемость индивида
         /// </summary>
@@ -236,6 +236,22 @@ namespace genetic_algorithm
             return result;
         }
         /// <summary>
+        /// [Параллельная версия]
+        /// Возвращает набор лучших по порядку особей
+        /// </summary>
+        /// <param name="n">Количество особей</param>
+        /// <returns>Список особей</returns>
+        public List<T> bestOfNP(int n = 1)
+        {
+            List<T> result = new List<T>();
+            sortEntitiesP();
+            for (int i = 0; i < n; i++)
+            {
+                result.Add(entities[i]);
+            }
+            return result;
+        }
+        /// <summary>
         /// Возвращает набор лучших по порядку особей в виде строки
         /// </summary>
         /// <param name="n">Количество особей</param>
@@ -310,14 +326,14 @@ namespace genetic_algorithm
         public override Route Mutate(int mutationindex)
         {
             Route newroute = new Route(this);
-            for (int i = 0; i < mutationindex; i++)
+            for (int i = 0; i < Random.Shared.Next(mutationindex); i++)
             {
                 newroute.swapelems(Random.Shared.Next(N), Random.Shared.Next(N));
             }
             return newroute;
         }
 
-        public override Route Crossover(ref readonly Entity entity)
+        public override Route Crossover(Entity entity)
         {
             int start = Random.Shared.Next(N);
             int end = Random.Shared.Next(N);

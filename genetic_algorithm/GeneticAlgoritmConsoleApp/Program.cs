@@ -43,7 +43,7 @@ Route.map = new float[,]
 
 Route.N = 20;
 
-Population<Route> population = new Population<Route>(1000, 100, 100);
+Population<Route> population = new Population<Route>(1000, 1000, 1000);
 Population<Route> ppopulation = new Population<Route>(1000, 100, 100);
 
 bool isRunning = true;
@@ -65,33 +65,33 @@ while (isRunning)
     //population.Mutate();
     //stopwatch.Stop();
 
-    Console.Clear();
-    Console.WriteLine("Generation: " + generation);
+    //Console.Clear();
+    //Console.WriteLine("Generation: " + generation);
     //Console.WriteLine($"Regular mutation: {stopwatch.ElapsedMilliseconds}ms");
 
-    
-    stopwatch.Restart();
-    population.Mutate();
-    stopwatch.Stop();
-    Console.WriteLine($"Regular mutation: {stopwatch.ElapsedMilliseconds}ms");
 
-    System.Threading.Thread.Sleep(200);
+    //stopwatch.Restart();
+    //population.Mutate();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Regular mutation: {stopwatch.ElapsedMilliseconds}ms");
 
-    stopwatch.Restart();
-    ppopulation.MutateP();
-    stopwatch.Stop();
-    Console.WriteLine($"Parallel mutation: {stopwatch.ElapsedMilliseconds}ms");
+    //System.Threading.Thread.Sleep(200);
+
+    //stopwatch.Restart();
+    //ppopulation.MutateP();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Parallel mutation: {stopwatch.ElapsedMilliseconds}ms");
 
 
-    stopwatch.Restart();
-    population.Crossover();
-    stopwatch.Stop();
-    Console.WriteLine($"Regular crossover: {stopwatch.ElapsedMilliseconds}ms");
-    System.Threading.Thread.Sleep(200);
-    stopwatch.Restart();
-    ppopulation.CrossoverP();
-    stopwatch.Stop();
-    Console.WriteLine($"Parallel crossover(pfor): {stopwatch.ElapsedMilliseconds}ms");
+    //stopwatch.Restart();
+    //population.Crossover();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Regular crossover: {stopwatch.ElapsedMilliseconds}ms");
+    //System.Threading.Thread.Sleep(200);
+    //stopwatch.Restart();
+    //ppopulation.CrossoverP();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Parallel crossover(pfor): {stopwatch.ElapsedMilliseconds}ms");
     //stopwatch.Restart();
     //population.CrossoverP();
     //stopwatch.Stop();
@@ -107,29 +107,32 @@ while (isRunning)
     //stopwatch.Stop();
     //Console.WriteLine($"Parallel crossover+mutate: {stopwatch.ElapsedMilliseconds}ms");
 
-    stopwatch.Restart();
-    population.SelectBySort();
-    stopwatch.Stop();
-    Console.WriteLine($"Regular select by sort: {stopwatch.ElapsedMilliseconds}ms");
+    //stopwatch.Restart();
+    //population.SelectBySort();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Regular select by sort: {stopwatch.ElapsedMilliseconds}ms");
 
-    System.Threading.Thread.Sleep(200);
-
-    stopwatch.Restart();
-    ppopulation.SelectBySortP();
-    stopwatch.Stop();
-    Console.WriteLine($"Parallel select by sort: {stopwatch.ElapsedMilliseconds}ms");
+    //System.Threading.Thread.Sleep(200);
 
     //stopwatch.Restart();
     //ppopulation.SelectBySortP();
     //stopwatch.Stop();
     //Console.WriteLine($"Parallel select by sort: {stopwatch.ElapsedMilliseconds}ms");
 
+    //stopwatch.Restart();
+    //ppopulation.SelectBySortP();
+    //stopwatch.Stop();
+    //Console.WriteLine($"Parallel select by sort: {stopwatch.ElapsedMilliseconds}ms");
+
+    population.MutateP();
+    population.CrossoverP();
+    population.SelectBySortP();
 
 
-    Console.WriteLine("Best 10 routes in generation (Press Ctrl+C to end algorithm):");
-    Console.Write(population.bestToStringP(10));
+    //Console.WriteLine("Best 10 routes in generation (Press Ctrl+C to end algorithm):");
+    //Console.Write(population.bestToStringP(10));
 
-    System.Threading.Thread.Sleep(500);
+    //System.Threading.Thread.Sleep(500);
 }
 
 //Console.Clear();

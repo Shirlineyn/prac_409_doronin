@@ -30,13 +30,13 @@ namespace GeneticApp
             Data data = new Data(this);
             data.CanDrag = true;
             data.N = 0;
-            data.MutIndex = 100;
+            data.MutIndex = 30;
             data.InputControlsEnabled = true;
             data.IterButtonEnabled = false;
             data.StopButtonEnabled = false;
             data.ResetButtonEnabled = false;
-            data.CrossIndex = 100;
-            data.NPop = 100;
+            data.CrossIndex = 1;
+            data.NPop = 1500;
             data.Generation = 0;
             data.BestRouteLen = -1;
             DataContext = data;
@@ -349,10 +349,10 @@ namespace GeneticApp
                     });
                     population.MutateP();
                     population.CrossoverP();
+                    print.Wait();
                     population.SelectBySortP();
                     UpdateBestRouteLen();
                     Generation++;
-                    print.Wait();
                 }
                 IterButtonEnabled = true;
                 StopButtonEnabled = false;
